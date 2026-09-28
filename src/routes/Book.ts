@@ -100,11 +100,93 @@ router.get('/', controller.readAll);
 // Primero comprobamos que el ID sea correcto y despues validamos los datos recibidos
 router.put('/:bookId', ValidateId('bookId'), ValidateJoi(Schemas.book.update), controller.updateBook);
 
+/**
+ * @openapi
+ * /books/{bookId}/tags:
+ *   post:
+ *     tags: [Books]
+ *     summary: Añade un tag a un libro sin duplicarlo
+ *     description: Si el libro ya tiene ese tag, no se repite. El tag tiene que ser uno de los permitidos.
+ *     parameters:
+ *       - in: path
+ *         name: bookId
+ *         required: true
+ *         schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [tag]
+ *             properties:
+ *               tag: { type: string, example: fantasia }
+ *     responses:
+ *       200: { $ref: '#/components/responses/BookOne' }
+ *       400: { $ref: '#/components/responses/BadRequest' }
+ *       404: { $ref: '#/components/responses/NotFound' }
+ *       422: { $ref: '#/components/responses/Unprocessable' }
+ */
+
 // Ruta para añadir un tag al libro sin duplicarlo
 router.post('/:bookId/tags', ValidateId('bookId'), ValidateJoi(Schemas.book.addTag), controller.addTag);
 
+/**
+ * @openapi
+ * /books/{bookId}/tags:
+ *   put:
+ *     tags: [Books]
+ *     summary: Reemplaza todos los tags de un libro
+ *     description: La lista enviada sustituye a la que había. No puede tener tags repetidos.
+ *     parameters:
+ *       - in: path
+ *         name: bookId
+ *         required: true
+ *         schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [tags]
+ *             properties:
+ *               tags:
+ *                 type: array
+ *                 items: { type: string }
+ *                 example: [ciencia-ficcion, fantasia]
+ *     responses:
+ *       200: { $ref: '#/components/responses/BookOne' }
+ *       400: { $ref: '#/components/responses/BadRequest' }
+ *       404: { $ref: '#/components/responses/NotFound' }
+ *       422: { $ref: '#/components/responses/Unprocessable' }
+ */
+
 // Ruta para reemplazar todos los tags del libro
 router.put('/:bookId/tags', ValidateId('bookId'), ValidateJoi(Schemas.book.replaceTags), controller.replaceTags);
+
+/**
+ * @openapi
+ * /books/{bookId}/tags/{tag}:
+ *   delete:
+ *     tags: [Books]
+ *     summary: Elimina un tag de un libro
+ *     description: Si el libro no tenía ese tag, no falla y devuelve el libro igual.
+ *     parameters:
+ *       - in: path
+ *         name: bookId
+ *         required: true
+ *         schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+ *       - in: path
+ *         name: tag
+ *         required: true
+ *         schema: { type: string }
+ *         example: fantasia
+ *     responses:
+ *       200: { $ref: '#/components/responses/BookOne' }
+ *       400: { $ref: '#/components/responses/BadRequest' }
+ *       404: { $ref: '#/components/responses/NotFound' }
+ */
 
 // Ruta para eliminar un tag del libro
 router.delete('/:bookId/tags/:tag', ValidateId('bookId'), controller.removeTag);
