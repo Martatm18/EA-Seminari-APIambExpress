@@ -100,6 +100,15 @@ router.get('/', controller.readAll);
 // Primero comprobamos que el ID sea correcto y despues validamos los datos recibidos
 router.put('/:bookId', ValidateId('bookId'), ValidateJoi(Schemas.book.update), controller.updateBook);
 
+// Ruta para añadir un tag al libro sin duplicarlo
+router.post('/:bookId/tags', ValidateId('bookId'), ValidateJoi(Schemas.book.addTag), controller.addTag);
+
+// Ruta para reemplazar todos los tags del libro
+router.put('/:bookId/tags', ValidateId('bookId'), ValidateJoi(Schemas.book.replaceTags), controller.replaceTags);
+
+// Ruta para eliminar un tag del libro
+router.delete('/:bookId/tags/:tag', ValidateId('bookId'), controller.removeTag);
+
 /**
  * @openapi
  * /books/{bookId}:

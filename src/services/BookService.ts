@@ -28,6 +28,21 @@ export const updateBook = (bookId: string, data: IBook) => {
     return Book.findByIdAndUpdate(bookId, data, { new: true }).populate('authors');
 };
 
+// Añade un tag sin duplicarlo y devuelve el libro actualizado con sus autores
+export const addTag = (bookId: string, tag: string) => {
+    return Book.findByIdAndUpdate(bookId, { $addToSet: { tags: tag } }, { returnDocument: 'after' }).populate('authors');
+};
+
+// Reemplaza la lista completa de tags y devuelve el libro actualizado con sus autores
+export const replaceTags = (bookId: string, tags: string[]) => {
+    return Book.findByIdAndUpdate(bookId, { $set: { tags } }, { returnDocument: 'after' }).populate('authors');
+};
+
+// Quita un tag sin fallar si el libro no lo tenia
+export const removeTag = (bookId: string, tag: string) => {
+    return Book.findByIdAndUpdate(bookId, { $pull: { tags: tag } }, { returnDocument: 'after' }).populate('authors');
+};
+
 // Funcion que se encarga de eliminar un libro de la base de datos
 export const deleteBook = (bookId: string) => {
     // Buscamos el libro por su ID y lo eliminamos
@@ -43,6 +58,12 @@ export default {
     getAllBooks,
 
     updateBook,
+
+    addTag,
+
+    replaceTags,
+
+    removeTag,
 
     deleteBook
 };

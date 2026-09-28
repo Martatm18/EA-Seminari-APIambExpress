@@ -76,6 +76,51 @@ const updateBook = async (req: Request<{ bookId: string }>, res: Response, next:
     }
 };
 
+// Añade un tag al libro
+const addTag = async (req: Request<{ bookId: string }>, res: Response, next: NextFunction) => {
+    try {
+        const book = await BookService.addTag(req.params.bookId, req.body.tag);
+
+        if (book) {
+            res.status(200).json({ book });
+        } else {
+            res.status(404).json({ message: 'not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Reemplaza todos los tags del libro
+const replaceTags = async (req: Request<{ bookId: string }>, res: Response, next: NextFunction) => {
+    try {
+        const book = await BookService.replaceTags(req.params.bookId, req.body.tags);
+
+        if (book) {
+            res.status(200).json({ book });
+        } else {
+            res.status(404).json({ message: 'not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Elimina un tag del libro
+const removeTag = async (req: Request<{ bookId: string; tag: string }>, res: Response, next: NextFunction) => {
+    try {
+        const book = await BookService.removeTag(req.params.bookId, req.params.tag);
+
+        if (book) {
+            res.status(200).json({ book });
+        } else {
+            res.status(404).json({ message: 'not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
 // Función para eliminar un libro
 const deleteBook = async (req: Request<{ bookId: string }>, res: Response, next: NextFunction) => {
     // Cogemos el ID del libro que queremos eliminar
@@ -102,4 +147,4 @@ const deleteBook = async (req: Request<{ bookId: string }>, res: Response, next:
 };
 
 // Exportamos todas las funciones para poder utilizarlas en las rutas
-export default { createBook, readBook, readAll, updateBook, deleteBook };
+export default { createBook, readBook, readAll, updateBook, addTag, replaceTags, removeTag, deleteBook };
