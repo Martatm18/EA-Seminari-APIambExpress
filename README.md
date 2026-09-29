@@ -2,12 +2,12 @@
 
 **Referències del material consultat:**
 
-Apunts porporcionats pels professors
-Repositoris proporcionats pels professors
-Els vídeos proposats
+- Apunts porporcionats pels professors
+- Repositoris proporcionats pels professors
+- Els vídeos proposats
 
 **Ús de la IA**
-En aquest seminari he fet l’ús de la IA, concretament Gemini 3.6, per redactar els OPENAPI dins del fitxer Book.ts dins de routes.
+- En aquest seminari he fet l’ús de la IA, concretament Gemini 3.6, per redactar els OPENAPI dins del fitxer Book.ts dins de routes.
 
 **PROMPT LITERAL:** Ja tinc implementades i funcionant aquestes tres rutes de la meva API REST (Node.js, Express, TypeScript, Mongoose, Joi), amb el seu controlador i la seva validació Joi ja fets per mi:
 POST /books/:bookId/tags : afegeix un tag a un llibre sense duplicar-lo
