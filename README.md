@@ -18,90 +18,79 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
 **INCOHERÈNICA:** CAP
 
 **RESPOSTA DE LA IA:** Aquí tens els tres blocs @openapi:
-//
-/**
- * @openapi
- * /books/{bookId}/tags:
- *   post:
- *     tags: [Books]
- *     summary: Añade un tag a un libro sin duplicarlo
- *     description: Si el libro ya tiene ese tag, no se repite. El tag tiene que ser uno de los permitidos.
- *     parameters:
- *       - in: path
- *         name: bookId
- *         required: true
- *         schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required: [tag]
- *             properties:
- *               tag: { type: string, example: fantasia }
- *     responses:
- *       200: { $ref: '#/components/responses/BookOne' }
- *       400: { $ref: '#/components/responses/BadRequest' }
- *       404: { $ref: '#/components/responses/NotFound' }
- *       422: { $ref: '#/components/responses/Unprocessable' }
- */
- //
+@openapi
+/books/{bookId}/tags:
+  post:
+    tags: [Books]
+    summary: Añade un tag a un libro sin duplicarlo
+    description: Si el libro ya tiene ese tag, no se repite. El tag tiene que ser uno de los permitidos.
+    parameters:
+      - in: path
+        name: bookId
+        required: true
+        schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [tag]
+            properties:
+              tag: { type: string, example: fantasia }
+    responses:
+      200: { $ref: '#/components/responses/BookOne' }
+      400: { $ref: '#/components/responses/BadRequest' }
+      404: { $ref: '#/components/responses/NotFound' }
+      422: { $ref: '#/components/responses/Unprocessable' }
 
-//
-/**
- * @openapi
- * /books/{bookId}/tags:
- *   put:
- *     tags: [Books]
- *     summary: Reemplaza todos los tags de un libro
- *     description: La lista enviada sustituye a la que había. No puede tener tags repetidos.
- *     parameters:
- *       - in: path
- *         name: bookId
- *         required: true
- *         schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required: [tags]
- *             properties:
- *               tags:
- *                 type: array
- *                 items: { type: string }
- *                 example: [ciencia-ficcion, fantasia]
- *     responses:
- *       200: { $ref: '#/components/responses/BookOne' }
- *       400: { $ref: '#/components/responses/BadRequest' }
- *       404: { $ref: '#/components/responses/NotFound' }
- *       422: { $ref: '#/components/responses/Unprocessable' }
- */
-//
-//
-/**
- * @openapi
- * /books/{bookId}/tags/{tag}:
- *   delete:
- *     tags: [Books]
- *     summary: Elimina un tag de un libro
- *     description: Si el libro no tenía ese tag, no falla y devuelve el libro igual.
- *     parameters:
- *       - in: path
- *         name: bookId
- *         required: true
- *         schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
- *       - in: path
- *         name: tag
- *         required: true
- *         schema: { type: string }
- *         example: fantasia
- *     responses:
- *       200: { $ref: '#/components/responses/BookOne' }
- *       400: { $ref: '#/components/responses/BadRequest' }
- *       404: { $ref: '#/components/responses/NotFound' }
- */
- //
+@openapi
+/books/{bookId}/tags:
+  put:
+    tags: [Books]
+    summary: Reemplaza todos los tags de un libro
+    description: La lista enviada sustituye a la que había. No puede tener tags repetidos.
+    parameters:
+      - in: path
+        name: bookId
+        required: true
+        schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [tags]
+            properties:
+              tags:
+                type: array
+                items: { type: string }
+                example: [ciencia-ficcion, fantasia]
+    responses:
+      200: { $ref: '#/components/responses/BookOne' }
+      400: { $ref: '#/components/responses/BadRequest' }
+      404: { $ref: '#/components/responses/NotFound' }
+      422: { $ref: '#/components/responses/Unprocessable' }
+
+@openapi
+/books/{bookId}/tags/{tag}:
+  delete:
+    tags: [Books]
+    summary: Elimina un tag de un libro
+    description: Si el libro no tenía ese tag, no falla y devuelve el libro igual.
+    parameters:
+      - in: path
+        name: bookId
+        required: true
+        schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+      - in: path
+        name: tag
+        required: true
+        schema: { type: string }
+        example: fantasia
+    responses:
+      200: { $ref: '#/components/responses/BookOne' }
+      400: { $ref: '#/components/responses/BadRequest' }
+      404: { $ref: '#/components/responses/NotFound' }
 
