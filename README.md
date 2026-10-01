@@ -28,21 +28,30 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
       - in: path
         name: bookId
         required: true
-        schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+        schema: 
+          type: string
+          pattern: '^[0-9a-fA-F]{24}$'
     requestBody:
       required: true
       content:
         application/json:
           schema:
             type: object
-            required: [tag]
+            required: 
+              - tag
             properties:
-              tag: { type: string, example: fantasia }
+              tag: 
+                type: string
+                example: fantasia
     responses:
-      200: { $ref: '#/components/responses/BookOne' }
-      400: { $ref: '#/components/responses/BadRequest' }
-      404: { $ref: '#/components/responses/NotFound' }
-      422: { $ref: '#/components/responses/Unprocessable' }
+      '200': 
+        $ref: '#/components/responses/BookOne'
+      '400': 
+        $ref: '#/components/responses/BadRequest'
+      '404': 
+        $ref: '#/components/responses/NotFound'
+      '422': 
+        $ref: '#/components/responses/Unprocessable'
 
 @openapi
 /books/{bookId}/tags:
@@ -54,24 +63,32 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
       - in: path
         name: bookId
         required: true
-        schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+        schema: 
+          type: string
+          pattern: '^[0-9a-fA-F]{24}$'
     requestBody:
       required: true
       content:
         application/json:
           schema:
             type: object
-            required: [tags]
+            required: 
+              - tags
             properties:
               tags:
                 type: array
-                items: { type: string }
+                items: 
+                  type: string
                 example: [ciencia-ficcion, fantasia]
     responses:
-      200: { $ref: '#/components/responses/BookOne' }
-      400: { $ref: '#/components/responses/BadRequest' }
-      404: { $ref: '#/components/responses/NotFound' }
-      422: { $ref: '#/components/responses/Unprocessable' }
+      '200': 
+        $ref: '#/components/responses/BookOne'
+      '400': 
+        $ref: '#/components/responses/BadRequest'
+      '404': 
+        $ref: '#/components/responses/NotFound'
+      '422': 
+        $ref: '#/components/responses/Unprocessable'
 
 @openapi
 /books/{bookId}/tags/{tag}:
@@ -83,14 +100,20 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
       - in: path
         name: bookId
         required: true
-        schema: { type: string, pattern: '^[0-9a-fA-F]{24}$' }
+        schema: 
+          type: string
+          pattern: '^[0-9a-fA-F]{24}$'
       - in: path
         name: tag
         required: true
-        schema: { type: string }
+        schema: 
+          type: string
         example: fantasia
     responses:
-      200: { $ref: '#/components/responses/BookOne' }
-      400: { $ref: '#/components/responses/BadRequest' }
-      404: { $ref: '#/components/responses/NotFound' }
+      '200': 
+        $ref: '#/components/responses/BookOne'
+      '400': 
+        $ref: '#/components/responses/BadRequest'
+      '404': 
+        $ref: '#/components/responses/NotFound'
 
