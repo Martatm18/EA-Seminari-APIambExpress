@@ -18,6 +18,7 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
 **INCOHERÈNICA:** CAP
 
 **RESPOSTA DE LA IA:** Aquí tens els tres blocs @openapi:
+//
 /**
  * @openapi
  * /books/{bookId}/tags:
@@ -45,7 +46,9 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
  *       404: { $ref: '#/components/responses/NotFound' }
  *       422: { $ref: '#/components/responses/Unprocessable' }
  */
+ //
 
+//
 /**
  * @openapi
  * /books/{bookId}/tags:
@@ -76,7 +79,8 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
  *       404: { $ref: '#/components/responses/NotFound' }
  *       422: { $ref: '#/components/responses/Unprocessable' }
  */
-
+//
+//
 /**
  * @openapi
  * /books/{bookId}/tags/{tag}:
@@ -99,4 +103,5 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
  *       400: { $ref: '#/components/responses/BadRequest' }
  *       404: { $ref: '#/components/responses/NotFound' }
  */
+ //
 
