@@ -18,6 +18,8 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
 **INCOHERÈNICA:** CAP
 
 **RESPOSTA DE LA IA:** Aquí tens els tres blocs @openapi:
+
+```
 @openapi
 /books/{bookId}/tags:
   post:
@@ -116,4 +118,3 @@ Necessito NOMÉS els comentaris @openapi per documentar-les a Swagger. Per a cad
         $ref: '#/components/responses/BadRequest'
       '404': 
         $ref: '#/components/responses/NotFound'
-
